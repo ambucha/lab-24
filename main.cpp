@@ -66,11 +66,13 @@ int main_menu(){
     return choice; 
 }
 
+// just needed to change the argument and the .insert() for sets
 void add_goat(set<Goat> &trip, string names[], string colors[]){
     Goat temp(names[rand() % SZ_NAMES], rand() % MAX_AGE,colors[rand() % SZ_COLORS]);
     trip.insert(temp);
 }
 
+// delet goat lowk j works the same i just need to change the argument
 void delete_goat(set<Goat> &trip){
     // start my displaying the goats in the trip atm
     // wait i lowk need to check if the list is mepty frist befiore deleting anything
@@ -109,6 +111,7 @@ void display_trip(const set<Goat>& trip){
 
     // for loop to go through each goat in the list and display its stats
     for(auto it = trip.begin(); it != trip.end(); it++){
+        // it->functino() instead of g.function()
         cout << "[" << count << "] " << it->get_name() << " (" << it->get_age() << ", " << it->get_color() << ")" << endl;
         count++;
     }
