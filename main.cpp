@@ -1,4 +1,4 @@
-// COMSC-210 | Lab 23 | Andrei Buchatskiy
+// COMSC-210 | Lab 24 | Andrei Buchatskiy
 // IDE used : Visual Studio Code
 
 #include <iostream>
