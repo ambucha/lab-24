@@ -4,7 +4,7 @@
 #include <iostream>
 #include <fstream>
 #include <iomanip>
-#include <list>
+#include <set>
 #include "Goat.h"
 using namespace std;
 
@@ -32,9 +32,10 @@ int main() {
     while (fin1 >> colors[i++]);
     fin1.close();
 
-    list<Goat> trip;
+    set<Goat> trip;
 
     // create a while loop to go until the user chooses to stop
+    /*
     int choice = 0;
     while(choice != 4){
         choice = main_menu();
@@ -48,6 +49,9 @@ int main() {
             display_trip(trip);
         }
     }
+    */
+
+    display_trip(trip);
 
     return 0;
 }
@@ -65,15 +69,15 @@ int main_menu(){
     return choice; 
 }
 
-void add_goat(list<Goat> &trip, string names[], string colors[]){
+void add_goat(set<Goat> &trip, string names[], string colors[]){
     // create a temportary Goat variable with random name, age, and color
     Goat temp(names[rand() % SZ_NAMES], rand() % MAX_AGE,colors[rand() % SZ_COLORS]);
 
     // add this temporary varaible to the list
-    trip.push_back(temp);
+    trip.insert(temp);
 }
 
-void delete_goat(list<Goat> &trip){
+void delete_goat(set<Goat> &trip){
     // start my displaying the goats in the trip atm
     // wait i lowk need to check if the list is mepty frist befiore deleting anything
     if(trip.empty()) {
@@ -105,13 +109,13 @@ void delete_goat(list<Goat> &trip){
     trip.erase(it);
 }
 
-void display_trip(list<Goat> trip){
+void display_trip(set<Goat> trip){
     // counter to display which goat you are on
     int count = 1;
 
     // for loop to go through each goat in the list and display its stats
-    for(Goat g : trip){
-        cout << "[" << count << "] " << g.get_name() << " (" << g.get_age() << ", " << g.get_color() << ")" << endl;
+    for(auto it = trip.begin(); it != trip.end(); it++){
+        cout << "[" << count << "] " << (*it).get_name() << " (" << (*it).get_age() << ", " << (*it).get_color() << ")" << endl;
         count++;
     }
 
