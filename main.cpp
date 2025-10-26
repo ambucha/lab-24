@@ -35,7 +35,6 @@ int main() {
     set<Goat> trip;
 
     // create a while loop to go until the user chooses to stop
-    /*
     int choice = 0;
     while(choice != 4){
         choice = main_menu();
@@ -49,10 +48,7 @@ int main() {
             display_trip(trip);
         }
     }
-    */
 
-    add_goat(trip, names, colors);
-    display_trip(trip);
 
     return 0;
 }
@@ -76,7 +72,35 @@ void add_goat(set<Goat> &trip, string names[], string colors[]){
 }
 
 void delete_goat(set<Goat> &trip){
-    
+    // start my displaying the goats in the trip atm
+    // wait i lowk need to check if the list is mepty frist befiore deleting anything
+    if(trip.empty()) {
+        cout << "No goats on the trip right now" << endl;
+        return;
+    }
+
+    display_trip(trip);
+    int i;
+
+    cout << "What goat would you like to eliminate: " << endl;
+    cin >> i;
+    cout << endl;
+
+    // also need to check if it can even be taken out (if it is withijn the list bounds)
+    while(i < 1 || i > trip.size()){
+        cout << "This goat does not exist, try giving me a valid goat number: ";
+        cin >> i;
+        cout << endl;
+    }
+
+    // use .erase() with .begin() 
+    auto it = trip.begin();
+    for(int k = 0; k < i - 1; k++){
+        it++;
+    }
+
+    // erase the goat at given choice
+    trip.erase(it);
 }
 
 void display_trip(const set<Goat>& trip){
